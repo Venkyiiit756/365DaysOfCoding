@@ -1,5 +1,28 @@
 #include <iostream>
+#include <string.h>
 using namespace std;
+
+void getWord(char* word, char** sentence)
+{
+    //walk through the sentence
+    //till you see the space
+    while((**sentence) != ' ' && (**sentence) != 0)
+    {
+        *word = **sentence; 
+        word++;
+        (*sentence)++;
+    }
+    // setting last char as null
+    // to make it null terminated string
+    *word = 0;
+
+    //move the pointer to after the space
+    // only if it not the null
+    if(**sentence != 0)
+    {
+        (*sentence)++;
+    }
+}
 
 void strcpy(char* dest, char* src)
 {
@@ -89,7 +112,21 @@ int main()
     //into array of the strings
     splitString(strIn, strOut);
 
+    std::cout << "..............." << std::endl;
+
+    // get the word
+    char tempWord[length];
+    //clear the word
+    
+    int count = 0;
+    while(*strIn)
+    {
+        memset(tempWord, 0, length);
+        getWord(tempWord, &strIn);
+        std::cout << tempWord << std::endl;
+    }
+
+
 
     return 0;
 }
-
